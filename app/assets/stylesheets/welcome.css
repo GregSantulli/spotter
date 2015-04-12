@@ -1,0 +1,181 @@
+
+html{
+  min-height: 100%
+}
+
+.global {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:0px;
+  bottom:0px;
+  width: 100%;
+  background-image: url("gym.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top center;
+  background-size: cover;
+}
+
+
+.user_container{
+
+  /*width: 70%;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*border: 1px solid #e0e0e0;*/
+  border-radius: 4px;
+  padding: 30px;
+  /*background-color: rgba(0,0,0,0.6);*/
+  height:50%;
+  /*display: none*/
+
+}
+
+.login, .signup{
+  /*display: inline-flex;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+  padding: 20px;
+  width: 30%;
+  height: 300px;
+  margin: 20px;
+  min-width: 300px;
+  background-color: #fafafa;
+}
+.form-input{
+  margin-bottom: 10px;
+  width: 100%;
+
+
+}
+
+.form-label{
+  padding-bottom: 10px;
+  padding-left: 10px;
+  font-weight: bold;
+
+}
+
+form {
+  width: 100%
+}
+
+.navigation_container{
+  height: 70px;
+  position: fixed;
+  width: 100%;
+  left: 0px;
+  background-color: rgba(0,0,0,0.6)
+}
+
+.nav_bar{
+  max-width: 1200px;
+  /*border: 1px solid white;*/
+  margin: auto;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  color: white;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+a:visited{
+  text-decoration: none;
+  color: white;
+}
+
+.icon img{
+  width: 60px;
+  /*fill: white;*/
+  /*padding-left: 20px;*/
+}
+
+.spotter{
+  font-family: 'Oswald', sans-serif;
+  margin-left: 40px;
+  font-size: 2em
+}
+
+.button {
+  margin-left: 60px
+}
+
+.button_box{
+  width: 50%;
+  /*border: 1px solid white;*/
+  text-align: right
+}
+
+.login_button{
+  width: 100px;
+  margin-left: 10px
+}
+
+.headline{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 4em;
+  color: white;
+  text-shadow: 2px 2px 10px black;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+
+}
+
+.search{
+  height: 70px;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  margin:auto;
+  width: 40%;
+  min-width: 530px;
+  align-items: center;
+  padding: 20px;
+  border-radius: 4px
+}
+
+.search_input{
+  width: 82%;
+  display: inline-block;
+  margin-right: 3%;
+}
+
+.search_button{
+  width: 15%;
+}
+
+.search_box{
+  display: block;
+  margin: auto;
+  width: 100%;
+/*  margin-top: 300px;
+  margin-bottom: 300px;*/
+
+
+}
+
+.search_flex{
+  display: flex;
+  height:100%;
+}
+
+
+
