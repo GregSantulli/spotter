@@ -27,6 +27,19 @@ class UsersController < ApplicationController
     end
   end
 
+
+  def login
+    @user = User.find_by_email(params['login']['email'])
+    if @user && @user.authenticate(params['login']['password']) # If the user exists AND the password entered is correct.
+      session[:user_id] = @user.id
+      redirect_to user_path @user
+    else
+    # If user's login doesn't work, send them back to the login form.
+      redirect_to '/'
+    end
+  end
+
+
 private
 
   def user_params

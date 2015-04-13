@@ -1,2 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+
+
+<div class="profile_container">
+
+  <div class="main_panel">
+
+    kjhklhj
+
+  </div>
+  <div class="top_bar">
+    <div class="profile_tab">MEET</div>
+    <div class="profile_tab">YOUR GYM</div>
+    <div class="profile_tab">XXXX</div>
+    <div class="profile_tab">XXXX</div>
+  </div>
+
+  <div class="side_bar">
+    <div class="picture_container">
+      <img class="profile_picture" src="/assets/profile.svg" alt="">
+    </div>
+
+    <div class="info_container">
+      <div>
+        Email: <%= current_user.email %>
+      </div>
+      <div>
+      Gym: <%= current_user.gyms.first.name %>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
