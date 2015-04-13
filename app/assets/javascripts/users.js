@@ -14,7 +14,7 @@ function searchListener() {
     console.log('click!')
 
     $('html, body').animate({
-        scrollTop: $(".results_container").offset().top
+      scrollTop: $(".results_container").offset().top
     }, 1500);
 
 
@@ -45,43 +45,52 @@ function searchListener() {
 }
 
 function autocompleter(){
-
-
-
   var availableGyms =[]
   var input = $('.search_input')
-
-     $.ajax({
-      url: '/search',
-      type:'post',
-      data: input
-    }).done(function(response){
-
-      var gyms =response.businesses
-
-      for(var i=0; i<=10; i++){
-        availableGyms.push(gyms[i])
-        // console.log(response.businesses[i].name)
-      }
-
-      console.log(availableGyms)
-
-      $( ".search_input" ).autocomplete({
+  $.ajax({
+    url: '/search',
+    type:'post',
+    data: input
+  }).done(function(response){
+    var gyms =response.businesses
+    for(var i=0; i<=10; i++){
+      availableGyms.push(gyms[i])
+    }
+    console.log(availableGyms)
+    $( ".search_input" ).autocomplete({
       source: availableGyms
     });
-
-    }).fail(function(){
-      console.log('ajax fail')
-    })
-
-
+  }).fail(function(){
+    console.log('ajax fail')
+  })
+};
 
 
+function loginListener(){
+  $('.login_button').on('click', function(){
+    var menuType = $(this).attr('data-type')
+    var clickedMenu = $('.' + menuType)
+
+    if (clickedMenu.hasClass('active')){
+      $('.' + menuType).fadeOut()
+      $('.login').removeClass('active')
+      $('.signup').removeClass('active')
+    }
+    else{
+      $('.login').fadeOut()
+      $('.signup').fadeOut()
+      $('.login').removeClass('active')
+      $('.signup').removeClass('active')
+      $('.' + menuType).fadeIn()
+      clickedMenu.addClass('active')
+
+
+    }
 
 
 
-  };
-
+  })
+}
 
 // $(document).keypress(function(){
 //   autocompleter()
@@ -92,5 +101,6 @@ function autocompleter(){
 // Event on scroll
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
+  loginListener()
   searchListener()
 });
