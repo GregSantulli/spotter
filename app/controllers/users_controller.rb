@@ -7,6 +7,16 @@ class UsersController < ApplicationController
 
   end
 
+  def search
+    parameters = { term: params[:search]["keyword"], category_filter: "fitness", limit: 10 }
+
+    @results = Yelp.client.search('San Francisco', parameters)
+
+    # binding.pry
+
+    render json: @results
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save

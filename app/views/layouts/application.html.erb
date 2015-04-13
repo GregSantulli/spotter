@@ -2,11 +2,28 @@
 <html>
 <head>
   <title>Spotter</title>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
   <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro|Oswald' rel='stylesheet' type='text/css'>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js">
+  </script>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script id="search_result_template" type="text/x-handlebars-template">
+     {{#each search_results}}
+      <div class="result">
+        <span class="gym_name">{{name}}</span>
+        <span class="address">{{location.address}}, {{location.postal_code}}</span>
+
+      </div>
+     {{/each}}
+  </script>
 
 </head>
 <body>
