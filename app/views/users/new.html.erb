@@ -1,0 +1,109 @@
+
+<div class="global">
+<div class="navigation_container">
+  <div class="nav_bar">
+    <div class="icon">
+      <img src="assets/fitness1.svg" alt="">
+    </div>
+    <div class="spotter">
+      Spotter
+    </div>
+
+    <div class="button">
+      <a href="">ABOUT</a>
+    </div>
+
+    <div class="button">
+      <a href="">DISCLAIMER</a>
+    </div>
+
+    <div class="button">
+      <a href="">GYMS</a>
+    </div>
+
+
+    <div class="button">
+      <a href="">FAQ</a>
+    </div>
+
+    <div class="button_box">
+
+      <div class="login_button btn btn-primary">Sign Up</div>
+      <div class="login_button btn btn-default">Log In</div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="search_flex">
+  <div class="search_box">
+    <div class="headline">Find your Motivation
+    </div>
+      <%= form_for :search, url: '/search' do |f| %>
+    <div class="search">
+
+
+        <%= f.text_field :name, placeholder: "Search Gyms", class: "form-control search_input"%>
+        <%= f.submit "Search", class: "search_button btn btn-primary" %>
+
+    </div>
+      <% end %>
+  </div>
+</div>
+
+
+
+<div class="user_container">
+
+  <div class="signup">
+    <%= form_for :user, url: '/users' do |f| %>
+    <div class="form-label">Sign Up</div>
+
+    <div class="form-input">
+      <%= f.text_field :name, placeholder: "Name", class: "form-control"%>
+    </div>
+    <div class="form-input">
+      <%= f.text_field :email, placeholder: "Email", value: "#{params[:email]}", class: "form-control"%>
+    </div>
+    <div class="form-input">
+      <%= f.password_field :password, placeholder: "Password", class: "form-control"%>
+    </div>
+    <div class="form-input">
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control"%>
+    </div>
+    <div class="form-input">
+      <%= f.submit "Submit", class: "btn btn-default" %>
+    </div>
+    <% end %>
+  </div>
+
+
+  <div class="login">
+
+
+
+    <%= form_for '/login' do |f|%>
+
+    <div class="form-label">Login</div>
+
+    <div class="form-input">
+      <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+    </div>
+    <div class="form-input">
+      <%= f.password_field :password, placeholder: "Password", class: "form-control"%>
+    </div class="form-input">
+    <div>
+      <%= f. submit "Submit", class: "btn btn-default"%>
+    </div>
+
+    <% end %>
+  </div>
+</div>
+
+<div class="user_container">
+  <div>
+
+
+</div>
