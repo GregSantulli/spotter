@@ -39,21 +39,24 @@
 
 <div class="search_flex">
   <div class="search_box">
-    <div class="headline">Find your Motivation
-    </div>
+    <div class="headline">Find your Motivation</div>
       <%= form_for :search, url: '/search' do |f| %>
     <div class="search">
 
 
-        <%= f.text_field :name, placeholder: "Search Gyms", class: "form-control search_input"%>
+        <%= f.text_field :keyword, placeholder: "Search Gyms", class: "form-control search_input"%>
         <%= f.submit "Search", class: "search_button btn btn-primary" %>
 
     </div>
       <% end %>
   </div>
+  <!-- <div class="search_box"></div> -->
 </div>
 
 
+<div class="results_container search_results">
+
+  </div>
 
 <div class="user_container">
 
@@ -101,9 +104,6 @@
     <% end %>
   </div>
 </div>
-
-<div class="user_container">
-  <div>
 
 
 </div>

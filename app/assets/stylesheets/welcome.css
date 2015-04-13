@@ -1,6 +1,7 @@
 
 html{
-  min-height: 100%
+  min-height: 100%;
+  font-family: 'Source Sans Pro', sans-serif
 }
 
 .global {
@@ -29,7 +30,7 @@ html{
   border-radius: 4px;
   padding: 30px;
   /*background-color: rgba(0,0,0,0.6);*/
-  height:50%;
+  height:100%;
   /*display: none*/
 
 }
@@ -177,5 +178,44 @@ a:visited{
   height:100%;
 }
 
+.results_container{
+  display: block;
+  /*align-items: center;
+  justify-content: center;*/
+  /*border: 1px solid #e0e0e0;*/
+  border-radius: 4px;
+  padding: 30px;
+  width: 70%;
+  margin: auto;
+  padding-top: 90px;
+  /*background-color: rgba(0,0,0,0.6);*/
+  /*height:100%;*/
+}
 
+.result{
+  height: 50px;
+  margin: auto;
+  margin-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+
+
+  display: flex;
+
+  width: 100%;
+  align-items: center;
+}
+
+.gym_name{
+  width: 30%;
+  padding-left: 20px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5em;
+
+}
+
+.address{
+  margin-left: 20px;
+
+}
 

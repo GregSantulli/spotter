@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'gyms/show'
+
   get 'users/show'
 
   get 'welcome/index'
@@ -29,6 +31,8 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
+
+  post '/search' => 'users#search'
 
   #   resources :products do
   #     member do
