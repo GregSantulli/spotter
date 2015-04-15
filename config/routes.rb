@@ -29,8 +29,6 @@ Rails.application.routes.draw do
   post '/login' => 'users#login'
   get '/logout' => 'sessions#destroy'
 
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
 
   post '/search' => 'users#search'
 

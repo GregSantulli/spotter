@@ -20,8 +20,6 @@ function searchListener() {
 
     var input = $('.search_input')
 
-
-
     $.ajax({
       url: '/search',
       type:'post',
@@ -34,8 +32,6 @@ function searchListener() {
       var html = $('#search_result_template').html();
       var templatingFunction = Handlebars.compile(html);
       $('.search_results').html(templatingFunction(context));
-
-
     }).fail(function(){
       console.log('ajax fail')
     })
@@ -92,6 +88,24 @@ function loginListener(){
   })
 }
 
+function signUpListener(){
+  $('form').on('submit', function(e){
+    console.log('click!')
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.ajax({
+      type:'post',
+      url: '/users',
+      data: formData,
+      // debugger
+    }).done(function(response){
+      $('.errors').replaceWith(response[0])
+
+    })
+  })
+};
+
+
 // $(document).keypress(function(){
 //   autocompleter()
 //   console.log("trigger!")
@@ -103,4 +117,5 @@ $( document ).ready(function() {
   $(document).bind('scroll', fader);
   loginListener()
   searchListener()
+  signUpListener()
 });
