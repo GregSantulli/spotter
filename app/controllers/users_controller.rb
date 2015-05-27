@@ -1,19 +1,16 @@
 class UsersController < ApplicationController
+
   def show
+      @all_users = User.all
   end
 
   def new
     # @user = User.new(user_params)
-
   end
 
   def search
     parameters = { term: params[:search]["keyword"], category_filter: "fitness", limit: 10 }
-
     @results = Yelp.client.search('San Francisco', parameters)
-
-    # binding.pry
-
     render json: @results
   end
 
@@ -23,20 +20,25 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to user_path @user
     else
-      render new_user_path
+      render json: @user.errors.full_messages
     end
   end
 
 
+
   def login
     @user = User.find_by_email(params['login']['email'])
-    if @user && @user.authenticate(params['login']['password']) # If the user exists AND the password entered is correct.
+    if @user && @user.authenticate(params['login']['password'])
       session[:user_id] = @user.id
       redirect_to user_path @user
     else
-    # If user's login doesn't work, send them back to the login form.
-      redirect_to '/'
+      render new_user_path @user
     end
+  end
+
+  def logout
+    reset_session
+    redirect_to "/"
   end
 
 

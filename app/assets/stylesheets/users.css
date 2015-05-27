@@ -6,7 +6,7 @@
 
 .side_bar{
   position: fixed;
-  top: 0px;
+  top: 70px;
   bottom: 0px;
   left:0px;
   width: 25%;
@@ -19,7 +19,7 @@
   /*bottom: 0px;*/
   left:25%;
   width: 75%;
-  padding: 70px;
+  padding: 50px;
 
 }
 
@@ -46,6 +46,7 @@
 }
 
 .profile_picture{
+  margin-top:20px;
   width: 200px;
   background-color: #fafafa
 }
@@ -61,3 +62,23 @@
   justify-content: center;
   border-right: 1px solid #e0e0e0
 }
+
+.sign_out_button{
+  width: 15%;
+  margin-left: 20px;
+}
+
+.partner_profile{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 20px;
+  height: 70px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20px;
+  border: 1px solid black;
+}
+
+
+

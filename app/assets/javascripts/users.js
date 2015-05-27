@@ -11,59 +11,26 @@ function fader() {
 function searchListener() {
   $('.search_button').on('click', function(e){
     e.preventDefault()
-    console.log('click!')
-
     $('html, body').animate({
       scrollTop: $(".results_container").offset().top
     }, 1500);
-
-
     var input = $('.search_input')
-
-
-
-    $.ajax({
-      url: '/search',
-      type:'post',
-      data: input
-      // debugger
-    }).done(function(response){
-      console.log("ajax success")
-      console.log(response.businesses)
-      var context = {search_results: response.businesses};
-      var html = $('#search_result_template').html();
-      var templatingFunction = Handlebars.compile(html);
-      $('.search_results').html(templatingFunction(context));
-
-
-    }).fail(function(){
-      console.log('ajax fail')
-    })
-
-
+    performSearch()
+    // $.ajax({
+    //   url: '/search',
+    //   type:'post',
+    //   data: input
+    // }).done(function(response){
+    //   var context = {search_results: response.businesses};
+    //   var html = $('#search_result_template').html();
+    //   var templatingFunction = Handlebars.compile(html);
+    //   $('.search_results').html(templatingFunction(context));
+    // }).fail(function(){
+    //   console.log('ajax fail')
+    // })
   })
 }
 
-function autocompleter(){
-  var availableGyms =[]
-  var input = $('.search_input')
-  $.ajax({
-    url: '/search',
-    type:'post',
-    data: input
-  }).done(function(response){
-    var gyms =response.businesses
-    for(var i=0; i<=10; i++){
-      availableGyms.push(gyms[i])
-    }
-    console.log(availableGyms)
-    $( ".search_input" ).autocomplete({
-      source: availableGyms
-    });
-  }).fail(function(){
-    console.log('ajax fail')
-  })
-};
 
 
 function loginListener(){
@@ -83,24 +50,94 @@ function loginListener(){
       $('.signup').removeClass('active')
       $('.' + menuType).fadeIn()
       clickedMenu.addClass('active')
-
-
     }
-
-
-
   })
 }
 
-// $(document).keypress(function(){
-//   autocompleter()
-//   console.log("trigger!")
-// })
+function signUpListener(){
+  $('form').on('submit', function(e){
+    console.log('click!')
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.ajax({
+      type:'post',
+      url: '/users',
+      data: formData,
+    }).done(function(response){
+      $('.errors').replaceWith(response[0])
+    })
+  })
+};
 
 
-// Event on scroll
+
+var map;
+var service;
+
+function handleSearchResults(results, status){
+
+  console.log(results)
+
+  for (var i = 0; i < results.length; i++) {
+
+    var marker = new google.maps.Marker({
+      position: results[i].geometry.location,
+      map: map,
+      icon: 'assets/fitness_small.svg',
+      infowindow: myinfowindow,
+    })
+
+    var myinfowindow = new google.maps.InfoWindow({
+      content: "<div>"+ results[i].name + "</div>"
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      this.infowindow.open(map,this);
+    });
+
+  };
+}
+
+function performSearch(){
+  var request = {
+    bounds: map.getBounds(),
+    types: ['gym'],
+
+  };
+  service.nearbySearch(request, handleSearchResults)
+}
+
+
+function initializeMap(location) {
+
+  var mapOptions = {
+    center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
+    zoom: 15
+  };
+
+
+  map = new google.maps.Map(document.getElementById('map_container'),
+    mapOptions);
+
+  service = new google.maps.places.PlacesService(map);
+
+  google.maps.event.addListenerOnce(map, 'bounds_changed', performSearch);
+
+  var marker = new google.maps.Marker({
+    position: map.center,
+    map: map,
+  })
+
+
+}
+
+
+
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
   loginListener()
   searchListener()
+  // signUpListener()
+  // initializeMap()
+  navigator.geolocation.getCurrentPosition(initializeMap)
 });

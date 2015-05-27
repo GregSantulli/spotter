@@ -5,15 +5,57 @@
 
   <div class="main_panel">
 
-    kjhklhj
+    <% @all_users.each do |user| %>
+      <% unless user == current_user %>
+        <div class="partner_profile"><%= user.name %></div>
+      <% end   %>
+    <% end %>
+
 
   </div>
-  <div class="top_bar">
-    <div class="profile_tab">MEET</div>
-    <div class="profile_tab">YOUR GYM</div>
-    <div class="profile_tab">XXXX</div>
-    <div class="profile_tab">XXXX</div>
+
+  <div class="navigation_container">
+  <div class="nav_bar">
+    <div class="icon">
+      <img src="../assets/fitness1.svg" alt="">
+    </div>
+    <div class="spotter">
+      Spotter
+    </div>
+
+    <div class="button">
+      <a href="">FIND</a>
+    </div>
+
+    <div class="button">
+      <a href="">GYM</a>
+    </div>
+
+    <div class="button">
+      <a href="">BUTTON</a>
+    </div>
+
+
+    <div class="button">
+      <a href="">BUTTON</a>
+    </div>
+
+    <div class="button_box">
+
+      <%= current_user.name %><%= button_to "Sign Out", signout_path, :class => "btn btn-default", :method => :get  %>
+      <!-- <div class="sign_out_button btn btn-default" data-type="login">Log Out</div> -->
+
+    </div>
+
   </div>
+
+</div>
+<!--   <div class="top_bar">
+    <div class="profile_tab">BUTTON</div>
+    <div class="profile_tab">BUTTON</div>
+    <div class="profile_tab">BUTTON</div>
+    <div class="profile_tab">BUTTON</div>
+  </div> -->
 
   <div class="side_bar">
     <div class="picture_container">
@@ -22,10 +64,16 @@
 
     <div class="info_container">
       <div>
+        Name: <%= current_user.name %>
+      </div>
+      <div>
         Email: <%= current_user.email %>
       </div>
       <div>
-      Gym: <%= current_user.gyms.first.name %>
+      Gym:
+      <% unless current_user.gyms.first == nil %>
+      <%= current_user.gyms.first.name %>
+      <% end %>
       </div>
 
     </div>

@@ -29,8 +29,12 @@ Rails.application.routes.draw do
   post '/login' => 'users#login'
   get '/logout' => 'sessions#destroy'
 
-  get '/signup' => 'users#new'
-  post '/users' => 'users#create'
+  get 'auth/:provider/callback' => 'sessions#create'
+  get 'auth/failure' => redirect('/')
+  get 'signout' => 'sessions#destroy', as: 'signout'
+
+  post '/signin' => 'sessions#new', :as => :signin
+
 
   post '/search' => 'users#search'
 
