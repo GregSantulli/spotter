@@ -1,4 +1,5 @@
 
+
 <div class="global">
   <div class="navigation_container">
     <div class="nav_bar">
@@ -26,92 +27,101 @@
         <a href="">FAQ</a>
       </div>
 
-      <div class="button_box">
+     <!--  <div class="button_box">
 
         <div class="login_button btn btn-primary" data-type="signup">Sign Up</div>
         <div class="login_button btn btn-default" data-type="login">Log In</div>
 
+      </div> -->
+
+    </div>
+
+  </div>
+
+  <div class="search_flex">
+    <div class="search_box">
+      <div class="headline">Find your Motivation</div>
+      <div class="slogan">Meet workout partners at your gym</div>
+
+      <div class="login_button">
+        <a href="/auth/facebook" class="sc--flat sc-btn sc--facebook">
+          <span class="sc-icon">
+            <svg viewBox="0 0 33 33" width="25" height="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M 17.996,32L 12,32 L 12,16 l-4,0 l0-5.514 l 4-0.002l-0.006-3.248C 11.993,2.737, 13.213,0, 18.512,0l 4.412,0 l0,5.515 l-2.757,0 c-2.063,0-2.163,0.77-2.163,2.209l-0.008,2.76l 4.959,0 l-0.585,5.514L 18,16L 17.996,32z"></path></g></svg>
+          </span>
+          <span class="sc-text">
+            Login with Facebook
+          </span>
+        </a>
       </div>
 
     </div>
+    <!-- <div class="search_box"></div> -->
+  </div>
+
+
+  <div class="results_container search_results">
+
+
+    <div id="map_container">
+
+    </div>
 
   </div>
 
-<div class="search_flex">
-  <div class="search_box">
-    <div class="headline">Find your Motivation</div>
-      <%= form_for :search, url: '/search' do |f| %>
-    <div class="search">
+  <div class="user_container">
 
+    <div class="signup">
+      <%= form_for :user, url: '/users' do |f| %>
 
-        <%= f.text_field :keyword, placeholder: "Search Gyms", class: "form-control search_input"%>
-        <%= f.submit "Search", class: "search_button btn btn-primary" %>
+      <div class="form-label">Sign Up</div>
 
-    </div>
+      <div class="form-input">
+        <%= f.text_field :name, placeholder: "Name", class: "form-control"%>
+      </div>
+
+      <div class="form-input">
+        <%= f.text_field :email, placeholder: "Email", class: "form-control"%>
+      </div>
+
+      <div class="form-input">
+        <%= f.password_field :password, placeholder: "Password", class: "form-control"%>
+      </div>
+
+      <div class="form-input">
+        <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control"%>
+      </div>
+      <div class="errors"></div>
+
+      <div class="form-input">
+        <%= f.submit "Submit", class: "submit btn btn-default" %>
+      </div>
       <% end %>
+    </div>
+
+
+    <div class="login">
+
+
+
+      <%= form_for :login, url: '/login' do |f|%>
+
+      <div class="form-label">Login</div>
+
+      <div class="form-input">
+        <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+      </div>
+      <div class="form-input">
+        <%= f.password_field :password, placeholder: "Password", class: "form-control"%>
+      </div class="form-input">
+      <div>
+        <%= f. submit "Submit", class: "btn btn-default"%>
+      </div>
+
+      <% end %>
+    </div>
   </div>
-  <!-- <div class="search_box"></div> -->
+
+
 </div>
 
 
-<div class="results_container search_results">
-<% if @user %>
-<%= @user.errors.full_messages %>
-<% end %>
-  </div>
-
-<div class="user_container">
-
-  <div class="signup">
-    <%= form_for :user, url: '/users' do |f| %>
-
-    <div class="form-label">Sign Up</div>
-
-    <div class="form-input">
-      <%= f.text_field :name, placeholder: "Name", class: "form-control"%>
-    </div>
-
-    <div class="form-input">
-      <%= f.text_field :email, placeholder: "Email", class: "form-control"%>
-    </div>
-
-    <div class="form-input">
-      <%= f.password_field :password, placeholder: "Password", class: "form-control"%>
-    </div>
-
-    <div class="form-input">
-      <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control"%>
-    </div>
-    <div class="errors"></div>
-
-    <div class="form-input">
-      <%= f.submit "Submit", class: "submit btn btn-default" %>
-    </div>
-    <% end %>
-  </div>
-
-
-  <div class="login">
-
-
-
-    <%= form_for :login, url: '/login' do |f|%>
-
-    <div class="form-label">Login</div>
-
-    <div class="form-input">
-      <%= f.text_field :email, placeholder: "Email", class: "form-control" %>
-    </div>
-    <div class="form-input">
-      <%= f.password_field :password, placeholder: "Password", class: "form-control"%>
-    </div class="form-input">
-    <div>
-      <%= f. submit "Submit", class: "btn btn-default"%>
-    </div>
-
-    <% end %>
-  </div>
-</div>
-
-
-</div>

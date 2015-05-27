@@ -42,7 +42,8 @@
 
     <div class="button_box">
 
-      <%= current_user.name %><div class="sign_out_button btn btn-default" data-type="login">Log Out</div>
+      <%= current_user.name %><%= button_to "Sign Out", signout_path, :class => "btn btn-default", :method => :get  %>
+      <!-- <div class="sign_out_button btn btn-default" data-type="login">Log Out</div> -->
 
     </div>
 
