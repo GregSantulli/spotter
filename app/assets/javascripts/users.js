@@ -3,7 +3,7 @@ function fader() {
   var navBar = $('.navigation_container')
   dt = $(document).scrollTop()
   $('.navigation_container').css(
-    "background-color", "rgba(0,0,0," +  (0.6 + (dt/500)) + ")")
+    "background-color", "rgba(51,71,122," +  (0.6 + (dt/500)) + ")")
 }
 
 

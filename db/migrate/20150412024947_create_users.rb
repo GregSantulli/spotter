@@ -6,6 +6,11 @@ class CreateUsers < ActiveRecord::Migration
       t.string :provider
       t.string :uid
       t.string :password_digest
+      t.string :
+      t.string :
+      t.string :
+      t.string :
+      t.string :
 
       t.timestamps null: false
     end
