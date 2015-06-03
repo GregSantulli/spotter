@@ -3,6 +3,8 @@ html{
   min-height: 100%;
   width: 100%;
   font-family: 'Source Sans Pro', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .global {
@@ -17,6 +19,60 @@ html{
   background-position: top center;
   background-size: cover;
 }
+
+.navbar .navbar li{
+  height: 70px;
+}
+
+.navbar-default{
+  background-color: rgba(51,71,122, 1);
+  border-bottom: 0px;
+}
+
+.navbar li > a {
+  margin-top: 10px;
+  border-radius: 3px;
+  margin-left: 20px;
+}
+
+@media (max-width: 767px){
+
+   .navbar-default .navbar-nav .open .dropdown-menu>li>a{
+    color: white
+  }
+
+  .profile_thumbnail{
+    display: none;
+  }
+
+}
+
+.navbar-default .navbar-nav>li>a{
+  color: white;
+}
+
+
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+  color: white;
+}
+
+.navbar-header{
+  /*width: 25%;`*/
+}
+
+.navbar-toggle{
+  margin-top: 18px;
+}
+
+.navbar-default .navbar-toggle .icon-bar{
+  background-color: white;
+}
+
+.dropdown-header{
+  color: white
+}
+
 
 h2{
   margin-top: 10px;
@@ -75,7 +131,7 @@ h2{
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
-  width: 500px;
+  /*width: 500px;*/
   text-align: center;
 }
 
@@ -122,19 +178,29 @@ a:hover{
 
 a:visited{
   text-decoration: none;
-  color: white;
+  /*color: white;*/
 }
 
 .icon img{
   width: 60px;
-  /*fill: white;*/
-  /*padding-left: 20px;*/
+}
+
+.icon{
+  display: inline-block;
+  margin-top: 5px;
+  margin-left: 5px
 }
 
 .spotter{
+  line-height: 70px;
+  vertical-align: middle;
   font-family: 'Oswald', sans-serif;
   margin-left: 40px;
-  font-size: 2em
+  margin-right: 40px;
+  font-size: 2em;
+  display: inline-block;
+  color: white;
+
 }
 
 .button {

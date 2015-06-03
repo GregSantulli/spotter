@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   resources :users
 
 
+  # get 'add_gym/' => 'users#add_gym'
+
   get '/login' => 'users#login'
   post '/login' => 'users#login'
   get '/logout' => 'sessions#destroy'

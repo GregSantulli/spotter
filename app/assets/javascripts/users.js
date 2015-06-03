@@ -9,26 +9,28 @@ function fader() {
 
 
 function searchListener() {
-  $('.search_button').on('click', function(e){
-    e.preventDefault()
-    $('html, body').animate({
-      scrollTop: $(".results_container").offset().top
-    }, 1500);
+  // $('.search_button').on('click', function(e){
+  //   e.preventDefault()
+
+    console.log("YO")
+
+
     var input = $('.search_input')
-    performSearch()
-    // $.ajax({
-    //   url: '/search',
-    //   type:'post',
-    //   data: input
-    // }).done(function(response){
-    //   var context = {search_results: response.businesses};
-    //   var html = $('#search_result_template').html();
-    //   var templatingFunction = Handlebars.compile(html);
-    //   $('.search_results').html(templatingFunction(context));
-    // }).fail(function(){
-    //   console.log('ajax fail')
-    // })
-  })
+    // performSearch()
+    $.ajax({
+      url: '/search',
+      type:'post',
+      data: input
+    }).done(function(response){
+      console.log(response)
+      var context = {search_results: response.businesses};
+      var html = $('#search_result_template').html();
+      var templatingFunction = Handlebars.compile(html);
+      $('.near_you_results').html(templatingFunction(context));
+    }).fail(function(){
+      console.log('ajax fail')
+    })
+  // })
 }
 
 
@@ -80,31 +82,27 @@ function handleSearchResults(results, status){
 
   for (var i = 0; i < results.length; i++) {
 
-    var marker = new google.maps.Marker({
-      position: results[i].geometry.location,
-      map: map,
-      icon: 'assets/fitness_small.svg',
-      infowindow: myinfowindow,
-    })
+    // var marker = new google.maps.Marker({
+    //   position: results[i].geometry.location,
+    //   map: map,
+    //   icon: 'assets/fitness_small.svg',
+    //   infowindow: myinfowindow,
+    // })
 
-    var myinfowindow = new google.maps.InfoWindow({
-      content: "<div>"+ results[i].name + "</div>"
-    });
+    // var myinfowindow = new google.maps.InfoWindow({
+    //   content: "<div>"+ results[i].name + "</div>"
+    // });
 
-    google.maps.event.addListener(marker, 'click', function() {
-      this.infowindow.open(map,this);
-    });
+    // google.maps.event.addListener(marker, 'click', function() {
+    //   this.infowindow.open(map,this);
+    // });
 
   };
 }
 
 function performSearch(){
-  var request = {
-    bounds: map.getBounds(),
-    types: ['gym'],
+  console.log(result)
 
-  };
-  service.nearbySearch(request, handleSearchResults)
 }
 
 
@@ -119,9 +117,8 @@ function initializeMap(location) {
   map = new google.maps.Map(document.getElementById('map_container'),
     mapOptions);
 
-  service = new google.maps.places.PlacesService(map);
 
-  google.maps.event.addListenerOnce(map, 'bounds_changed', performSearch);
+  // google.maps.event.addListenerOnce(map, 'bounds_changed', performSearch);
 
   var marker = new google.maps.Marker({
     position: map.center,
@@ -135,9 +132,9 @@ function initializeMap(location) {
 
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
-  loginListener()
+  // loginListener()
   searchListener()
   // signUpListener()
   // initializeMap()
-  navigator.geolocation.getCurrentPosition(initializeMap)
+  // console.log(navigator.geolocation.getCurrentPosition(performSearch))
 });

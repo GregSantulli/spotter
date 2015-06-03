@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
 
   def show
-      @all_users = User.all
+    @all_users = User.all
   end
 
   def new
     # @user = User.new(user_params)
+    if current_user
+      redirect_to user_path current_user
+    end
   end
 
   def search
-    parameters = { term: params[:search]["keyword"], category_filter: "fitness", limit: 10 }
+    parameters = { category_filter: "fitness", limit: 10 }
     @results = Yelp.client.search('San Francisco', parameters)
     render json: @results
   end
+
 
   def create
     @user = User.new(user_params)
@@ -22,6 +26,17 @@ class UsersController < ApplicationController
     else
       render json: @user.errors.full_messages
     end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    @gym = Gym.where(yelp_id: params["gym"]["yelp_id"]).first || Gym.create(gym_params)
+
+    Membership.create(user_id: @user.id, gym_id: @gym.id)
+
+
+    redirect_to user_path @user
+
   end
 
 
@@ -42,10 +57,15 @@ class UsersController < ApplicationController
   end
 
 
-private
+  private
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+
+  def gym_params
+    params.require(:gym).permit(:name, :yelp_id, :address)
   end
 
 end

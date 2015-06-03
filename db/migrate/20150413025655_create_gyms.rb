@@ -3,6 +3,7 @@ class CreateGyms < ActiveRecord::Migration
     create_table :gyms do |t|
       t.string :name
       t.string :address
+      t.string :yelp_id
 
       t.timestamps null: false
     end

@@ -45,10 +45,12 @@
 
 }
 
-.profile_picture{
-  margin-top:20px;
-  width: 200px;
-  background-color: #fafafa
+.profile_thumbnail{
+  margin-top:10px;
+  width: 50px;
+  background-color: #fafafa;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0
 }
 
 .info_container{
@@ -82,3 +84,14 @@
 
 
 
+.member_panel{
+  height: 500px;
+  border-radius: 3px;
+  border: 1px solid #e0e0e0;
+  margin: 20px;
+  padding: 20px;
+}
+
+.search.container{
+  margin-bottom: 20px;
+}
