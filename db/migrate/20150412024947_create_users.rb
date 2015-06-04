@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :provider
       t.string :uid
       t.string :password_digest
+      t.string :thumbnail_link
 
 
       t.timestamps null: false

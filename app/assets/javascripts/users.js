@@ -129,11 +129,28 @@ function initializeMap(location) {
 }
 
 
+function choiceListener(){
+  $('.choice.btn').on('click', function(e){
+    e.preventDefault()
+    var clickedButton = $(this)
+    var user = $(this).parent()
+    if(clickedButton.hasClass('no')){
+      user.animate({left: '-200%'}, 500).fadeOut()
+    }else{
+      user.animate({right: '-200%'}, 500).fadeOut()
+    }
+  })
+}
+
+
+
+
 
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
   // loginListener()
   searchListener()
+  choiceListener()
   // signUpListener()
   // initializeMap()
   // console.log(navigator.geolocation.getCurrentPosition(performSearch))

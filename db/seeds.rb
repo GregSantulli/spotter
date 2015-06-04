@@ -6,24 +6,42 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# all_users = []
 
-User.create!(name: "Greg", email:"greg@greg.com", password:"12345")
-User.create!(name: "bill", email:"bill@spotter.com", password:"12345")
-User.create!(name: "sally", email:"sally@spotter.com", password:"12345")
-User.create!(name: "Mr. Steal Yo Girl", email:"kels@closet.com", password:"12345")
-User.create!(name: "Meathead Tony", email:"jabroni@shredded.com", password:"12345")
-User.create!(name: "Broseph", email:"bruh@bruh.com", password:"12345")
+# all_users << User.create!(name: "Greg Santulli", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Bill Taft", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Sally Mae", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Brian Griffin", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Tony Stark", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Joe Caruso", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Peter Cherry", email: "spotter@spotter.com")
+# all_users << User.create!(name: "Adam Godel", email:"spotter@spotter.com")
+# all_users << User.create!(name: "Kyle Cierzan", email:"spotter@spotter.com")
+# all_users << User.create!(name: "Harrison Cook", email:"spotter@spotter.com")
+# all_users << User.create!(name: "Will Turner", email:"spotter@spotter.com")
+# all_users << User.create!(name: "Lance Armstrong", email:"spotter@spotter.com")
 
-Gym.create!(name:"Cool Gym", address: "1234 lane")
-Gym.create!(name:"Lame Gym", address: "000 lane")
+Gym.create!(name:"24 Hour Fitness", address: "1234 lane")
+Gym.create!(name:"Crunch", address: "1234 lane")
+Gym.create!(name:"Planet Fitness", address: "1234 lane")
+Gym.create!(name:"Equinox", address: "5678 lane")
 
 
-greg = User.find_by_email("greg@greg.com")
-kels = User.find_by_email("kels@closet.com")
-kels = User.find_by_email("bruh@bruh.com")
-gym = Gym.find_by_name("Cool Gym")
+# greg = User.find("greg@greg.com")
+# kels = User.find("kels@closet.com")
+# kels = User.find("bruh@bruh.com")
+# gym = Gym.find_by_name("24 Hour Fitness")
 
-Membership.create!(user_id: greg.id, gym_id: gym.id)
-Membership.create!(user_id: kels.id, gym_id: gym.id)
-Membership.create!(user_id: kels.id, gym_id: gym.id)
+# Membership.create!(user_id: greg.id, gym_id: (1..4).sample)
+# Membership.create!(user_id: kels.id, gym_id: (1..4).sample)
+# Membership.create!(user_id: kels.id, gym_id: (1..4).sample)
 
+all_users = []
+
+20.times do
+  all_users << User.create!(name: Faker::Name.name, email: Faker::Internet.email)
+end
+
+all_users.each do |user|
+    Membership.create!(user_id: user.id, gym_id: (1 + rand(3)))
+end

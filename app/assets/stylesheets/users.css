@@ -1,5 +1,5 @@
 
-  .profile_container{
+.profile_container{
   width: 100%;
   /*display: flex;*/
 }
@@ -11,7 +11,7 @@
   left:0px;
   width: 25%;
   border-right: 1px solid #e0e0e0;
-  }
+}
 
 .main_panel{
   position: absolute;
@@ -84,14 +84,29 @@
 
 
 
-.member_panel{
-  height: 500px;
+.member_container{
+  text-align: center;
+  height: auto;
   border-radius: 3px;
   border: 1px solid #e0e0e0;
-  margin: 20px;
+  margin-top: 20px;
   padding: 20px;
+  width: 95%;
+  position: absolute;
+  background-color: white
+}
+
+.member_container img{
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  max-width: 300px
 }
 
 .search.container{
   margin-bottom: 20px;
+}
+
+.no, .yes{
+  border-radius: 50%
 }

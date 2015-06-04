@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   def show
+    unless current_user
+      redirect_to root_path
+    end
     @all_users = User.all
+
   end
 
   def new

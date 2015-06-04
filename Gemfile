@@ -37,6 +37,7 @@ gem 'yelp'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'faker'
 
 
 # Use Capistrano for deployment
