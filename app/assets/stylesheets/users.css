@@ -89,7 +89,7 @@
   height: auto;
   border-radius: 3px;
   border: 1px solid #e0e0e0;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   padding: 20px;
   width: 95%;
   position: absolute;
@@ -100,6 +100,7 @@
   border-radius: 50%;
   border: 1px solid #e0e0e0;
   width: 100%;
+  height: 300px;
   max-width: 300px
 }
 
@@ -108,5 +109,15 @@
 }
 
 .no, .yes{
-  border-radius: 50%
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  font-size: 2em;
+  margin: 20px;
+  padding-top: 12px;
+
+}
+
+.choice:focus{
+  outline: none;
 }

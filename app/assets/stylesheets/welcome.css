@@ -137,6 +137,10 @@ h2{
   text-align: center;
 }
 
+.login_button a:visited{
+  color: white
+}
+
 .form-label{
   padding-bottom: 10px;
   padding-left: 10px;

@@ -5,11 +5,9 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @all_users = User.all
-
   end
 
   def new
-    # @user = User.new(user_params)
     if current_user
       redirect_to user_path current_user
     end
@@ -35,12 +33,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @gym = Gym.where(yelp_id: params["gym"]["yelp_id"]).first || Gym.create(gym_params)
-
     Membership.create(user_id: @user.id, gym_id: @gym.id)
-
-
     redirect_to user_path @user
-
   end
 
 
