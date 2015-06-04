@@ -32,12 +32,15 @@ ActiveRecord::Schema.define(version: 20150413025858) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.string   "email"
     t.string   "provider"
     t.string   "uid"
     t.string   "password_digest"
     t.string   "thumbnail_link"
+    t.integer  "feet"
+    t.integer  "inches"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
