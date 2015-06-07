@@ -87,44 +87,42 @@
         <div class="panel-heading">
           <h3 class="panel-title"><%= current_user.gyms.first.name %></h3>
         </div>
-         <div class="panel-body">
-                  <%= current_user.gyms.first.address %>
-          </div>
-      </div>
-      </div>
-      <div class="col-md-6">
-        <div class="list-group">
-          <% @all_users.each do |user| %>
-          <% unless user.id == current_user.id %>
-          <div class="member_container">
-            <img src="<%= user.thumbnail_link %>" alt="">
-            <h3><%= user.first_name %></h3>
-
-            <div class="text-left">
-              <div class="panel panel-default">
-                <div class="panel-heading"><%= user.gyms.first.name %></div>
-                <div class="panel-body">
-                  Panel content
-                </div>
-              </div>
-            </div>
-
-            <button class="no choice btn btn-danger">
-              <div class="glyphicon glyphicon-remove"></div>
-            </button>
-            <button class="yes choice btn btn-success">
-              <div class="glyphicon glyphicon-ok"></div>
-            </button>
-
-
-
-          </div>
-          <% end %>
-          <% end %>
+        <div class="panel-body">
+          <%= current_user.gyms.first.address %>
         </div>
       </div>
     </div>
+        <% @all_users.each do |user| %>
+        <% unless user.id == current_user.id %>
+    <div class="col-md-6">
+        <div class="member_container outline">
+          <img src="<%= user.thumbnail_link %>" alt="">
+          <h3><%= user.first_name %></h3>
+
+          <div class="text-left">
+            <div class="panel panel-default">
+              <div class="panel-heading"><%= user.gyms.first.name %></div>
+              <div class="panel-body">
+                Panel content
+              </div>
+            </div>
+          </div>
+
+          <button class="no choice btn btn-danger">
+            <div class="glyphicon glyphicon-remove"></div>
+          </button>
+          <button class="yes choice btn btn-success">
+            <div class="glyphicon glyphicon-ok"></div>
+          </button>
+
+
+
+        </div>
+    </div>
+        <% end %>
+        <% end %>
   </div>
+</div>
 </div>
 
 

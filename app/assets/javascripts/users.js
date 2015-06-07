@@ -133,7 +133,7 @@ function choiceListener(){
   $('.choice.btn').on('click', function(e){
     e.preventDefault()
     var clickedButton = $(this)
-    var user = $(this).parent()
+    var user = $(this).parent().parent()
     if(clickedButton.hasClass('no')){
       user.animate({left: '-200%'}, 500).fadeOut()
     }else{
