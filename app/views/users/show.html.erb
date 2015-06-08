@@ -8,6 +8,8 @@
 </script>
 
 
+
+
 <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
@@ -19,7 +21,7 @@
       </button>
 
       <div class="icon">
-          <%= image_tag 'fitness1.svg' %>
+        <%= image_tag 'fitness1.svg' %>
       </div>
       <div class="spotter">
         Spotter
@@ -92,47 +94,47 @@
         </div>
       </div>
     </div>
-        <% @unswiped_users.shuffle.each do |user| %>
+    <% @unswiped_users.shuffle.each do |user| %>
     <div class="col-md-6">
-        <div id="<%= user.id %>" class="member_container outline">
-          <% if user.provider == "facebook" %>
-            <img src="http://graph.facebook.com/<%= user.uid %>/picture?type=large" alt="Profile Picture">
-          <% else %>
-            <img src="<%= user.thumbnail_link %>" alt="">
-          <% end %>
-          <h3><%= user.first_name %></h3>
+      <div id="<%= user.id %>" class="member_container outline">
+        <% if user.provider == "facebook" %>
+        <img src="http://graph.facebook.com/<%= user.uid %>/picture?type=large" alt="Profile Picture">
+        <% else %>
+        <img src="<%= user.thumbnail_link %>" alt="">
+        <% end %>
+        <h3><%= user.first_name %></h3>
 
-          <div class="text-left">
-            <div class="panel panel-default">
-              <div class="panel-heading"><%= user.gyms.first.name %></div>
-              <div class="panel-body">
-                Panel content
-              </div>
+        <div class="text-left">
+          <div class="panel panel-default">
+            <div class="panel-heading"><%= user.gyms.first.name %></div>
+            <div class="panel-body">
+              Panel content
             </div>
           </div>
-
-          <%= form_for :swipe do |f| %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= f.hidden_field :swipee_id, :value => user.id %>
-          <%= f.hidden_field :like, :value => false %>
-          <%= button_tag(type: 'submit', class: "no choice btn btn-danger") do %>
-            <div class="glyphicon glyphicon-remove"></div>
-          <% end %>
-          <% end %>
-
-          <%= form_for :swipe do |f| %>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-          <%= f.hidden_field :swipee_id, :value => user.id %>
-          <%= f.hidden_field :like, :value => true %>
-          <%= button_tag(type: 'submit', class: "yes choice btn btn-success") do %>
-            <div class="glyphicon glyphicon-ok"></div>
-          <% end %>
-          <% end %>
-
-
         </div>
-    </div>
+
+        <%= form_for :swipe do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :swipee_id, :value => user.id %>
+        <%= f.hidden_field :like, :value => false %>
+        <%= button_tag(type: 'submit', class: "no choice btn btn-danger") do %>
+        <div class="glyphicon glyphicon-remove"></div>
         <% end %>
+        <% end %>
+
+        <%= form_for :swipe do |f| %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.hidden_field :swipee_id, :value => user.id %>
+        <%= f.hidden_field :like, :value => true %>
+        <%= button_tag(type: 'submit', class: "yes choice btn btn-success") do %>
+        <div class="glyphicon glyphicon-ok"></div>
+        <% end %>
+        <% end %>
+
+
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
 </div>
@@ -141,3 +143,32 @@
 
 
 <% end %>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">It's a match!</h4>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modal_image" src="" alt="Profile Picture">
+        <h3 id="modal_user_name"></h3>
+
+        <div class="text-left">
+          <div class="panel panel-default">
+            <div id="modal_gym_name"class="panel-heading"></div>
+            <div class="panel-body">
+              Panel content
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal_message_button"type="button" class="btn btn-primary"></button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Keep Looking</button>
+      </div>
+    </div>
+  </div>
+</div>

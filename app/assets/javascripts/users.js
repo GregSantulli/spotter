@@ -11,10 +11,6 @@ function fader() {
 function searchListener() {
   // $('.search_button').on('click', function(e){
   //   e.preventDefault()
-
-  console.log("YO")
-
-
   var input = $('.search_input')
     // performSearch()
     $.ajax({
@@ -141,7 +137,15 @@ function swipeListener(){
       type: "POST",
       data: formData,
     }).done(function(response) {
-      console.log(response)
+      if(response.match){
+        console.log(response.match.first_name);
+        updateMatchModal(response.match);
+        jQuery.noConflict();
+        $('#myModal').modal('show');
+
+      }else{
+      console.log("no match")
+      }
 
     }).fail(function(){
 
@@ -157,11 +161,16 @@ function swipeListener(){
 }
 
 
+function updateMatchModal(match){
+  $('#modal_user_name').html(match.first_name)
+  $('#modal_message_button').html("Message " + match.first_name)
+  if(match.provider === 'facebook'){
+    $('#modal_image').attr('src', "WOOP")
+  }else{
+    $('#modal_image').attr('src', match.thumbnail_link)
+  }
 
-
-
-
-
+}
 
 
 
