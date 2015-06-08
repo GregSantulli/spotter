@@ -8,24 +8,30 @@ function fader() {
 
 
 
-function searchListener() {
-  // $('.search_button').on('click', function(e){
-  //   e.preventDefault()
-  var input = $('.search_input')
-    // performSearch()
-    $.ajax({
-      url: '/search',
-      type:'post',
-      data: input
-    }).done(function(response){
-      var context = {search_results: response.businesses};
-      var html = $('#search_result_template').html();
-      var templatingFunction = Handlebars.compile(html);
-      $('.near_you_results').html(templatingFunction(context));
-    }).fail(function(){
-      console.log('ajax fail')
-    })
-  // })
+function geoSearch(position) {
+  var lat = position.coords.latitude
+  var lon = position.coords.longitude
+  var input = $('.search input').val()
+  var data = {
+    coords: {latitude: lat, longitude: lon},
+    term: input,
+  }
+  $.ajax({
+    url: '/search',
+    type:'post',
+    data: data,
+  }).done(function(response){
+    console.log(response)
+    if(input !== ""){
+      $('#search-results-header').html('Gyms matching "' + input +'"')
+    }
+    var context = {search_results: response.businesses};
+    var html = $('#search_result_template').html();
+    var templatingFunction = Handlebars.compile(html);
+    $('.near_you_results').html(templatingFunction(context));
+  }).fail(function(){
+    console.log('search ajax fail')
+  })
 }
 
 
@@ -91,8 +97,7 @@ function handleSearchResults(results, status){
     // google.maps.event.addListener(marker, 'click', function() {
     //   this.infowindow.open(map,this);
     // });
-
-};
+  };
 }
 
 function performSearch(){
@@ -102,25 +107,17 @@ function performSearch(){
 
 
 function initializeMap(location) {
-
   var mapOptions = {
     center: new google.maps.LatLng(location.coords.latitude, location.coords.longitude),
     zoom: 15
   };
-
-
   map = new google.maps.Map(document.getElementById('map_container'),
     mapOptions);
-
-
   // google.maps.event.addListenerOnce(map, 'bounds_changed', performSearch);
-
   var marker = new google.maps.Marker({
     position: map.center,
     map: map,
   })
-
-
 }
 
 
@@ -144,7 +141,7 @@ function swipeListener(){
         $('#myModal').modal('show');
 
       }else{
-      console.log("no match")
+        console.log("no match")
       }
 
     }).fail(function(){
@@ -173,14 +170,26 @@ function updateMatchModal(match){
 }
 
 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    console.log("No Geolocation");
+  }
+}
+
+function geoSearchListener(){
+  $('button#gym-search').on('click', function(){
+    $('.near_you_results').html("<span class='list-group-item'>Searching...</span>")
+    navigator.geolocation.getCurrentPosition(geoSearch)
+  });
+}
 
 
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
-  // loginListener()
-  searchListener()
   swipeListener()
-  // signUpListener()
-  // initializeMap()
-  // console.log(navigator.geolocation.getCurrentPosition(performSearch))
+  geoSearchListener()
+  navigator.geolocation.getCurrentPosition(geoSearch)
 });
+

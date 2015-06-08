@@ -15,8 +15,12 @@ class UsersController < ApplicationController
   end
 
   def search
-    parameters = { category_filter: "fitness", limit: 10 }
-    @results = Yelp.client.search('San Francisco', parameters)
+    p "Params:"
+    p params
+    term = params[:term]
+    coords = params[:coords]
+    parameters = {term: term, category_filter: "fitness", limit: 10 }
+    @results = Yelp.client.search_by_coordinates(coords, parameters)
     render json: @results
   end
 
