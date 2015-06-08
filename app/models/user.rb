@@ -30,4 +30,14 @@ class User < ActiveRecord::Base
     User.all.reject{|user| self.swipees.include?(user) || user.id == self.id}.take(limit)
   end
 
+  def is_match?(user)
+    begin
+    i_like_them = self.swipes.where(swipee_id: user.id).first.like
+    they_like_me = user.swipes.where(swipee_id: self.id).first.like
+    rescue
+      return      false
+    end
+    i_like_them && they_like_me
+  end
+
 end

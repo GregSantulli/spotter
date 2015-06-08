@@ -1,21 +1,13 @@
 class SwipesController < ApplicationController
 
-
   def create
-
-
-    # Swipe.create(
-    #   swiper_id: swipe_params[:swiper_id],
-    #   swipee_id: swipe_params[:swipee_id],
-    #   like: swipe_params[:like]
-    #   )
-
-    swipe = Swipe.create(swipe_params)
-
-    render json: swipe
-
+    swipee = User.find(swipe_params[:swipee_id])
+    Swipe.create(swipe_params)
+    if current_user.is_match?(swipee)
+      render json: swipee
+    else
+      render json: {}
   end
-
 
   private
 

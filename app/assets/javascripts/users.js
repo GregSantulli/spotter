@@ -160,12 +160,6 @@ function swipeListener(){
 
 
 
-
-
-
-
-
-
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
   // loginListener()
