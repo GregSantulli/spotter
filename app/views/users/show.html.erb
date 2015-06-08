@@ -92,10 +92,10 @@
         </div>
       </div>
     </div>
-        <% @all_users.each do |user| %>
+        <% @all_users.shuffle.each do |user| %>
         <% unless user.id == current_user.id %>
     <div class="col-md-6">
-        <div class="member_container outline">
+        <div id="<%= user.id %>" class="member_container outline">
           <img src="<%= user.thumbnail_link %>" alt="">
           <h3><%= user.first_name %></h3>
 
