@@ -5,6 +5,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @all_users = User.all
+    @unswiped_users = current_user.unswiped_users
   end
 
   def new
@@ -18,7 +19,6 @@ class UsersController < ApplicationController
     @results = Yelp.client.search('San Francisco', parameters)
     render json: @results
   end
-
 
   def create
     @user = User.new(user_params)
@@ -37,8 +37,6 @@ class UsersController < ApplicationController
     redirect_to user_path @user
   end
 
-
-
   def login
     @user = User.find_by_email(params['login']['email'])
     if @user && @user.authenticate(params['login']['password'])
@@ -53,7 +51,6 @@ class UsersController < ApplicationController
     reset_session
     redirect_to "/"
   end
-
 
   private
 

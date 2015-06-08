@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
 
-  has_many :memberships
   has_many :gyms, through: :memberships
+  has_many :memberships
 
-  has_many :likers, through: :likers
-  has_many :likes, {
+  has_many :swipees, through: :swipes
+  has_many :swipes, {
     :foreign_key => "user_id",
-    :class_name => "Like"
+    :class_name => "Swipe"
   }
 
   def self.create_with_omniauth(auth)
@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
         user.email = auth['info']['email'] || ""
       end
     end
+  end
+
+  def unswiped_users(limit=50)
+    User.all.reject{|user| self.swipees.include?(user) || user.id == self.id}.take(limit)
   end
 
 end

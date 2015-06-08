@@ -130,3 +130,9 @@
 .outline{
   border: 1px solid #e0e0e0
 }
+
+.member_container form{
+  display: inline-block;
+  width: 40%;
+  text-align: center;
+}
