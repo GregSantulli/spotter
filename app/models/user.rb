@@ -8,6 +8,12 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :gyms, through: :memberships
 
+  has_many :likers, through: :likers
+  has_many :likes, {
+    :foreign_key => "user_id",
+    :class_name => "Like"
+  }
+
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth['provider']
