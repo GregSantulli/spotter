@@ -12,17 +12,16 @@ function searchListener() {
   // $('.search_button').on('click', function(e){
   //   e.preventDefault()
 
-    console.log("YO")
+  console.log("YO")
 
 
-    var input = $('.search_input')
+  var input = $('.search_input')
     // performSearch()
     $.ajax({
       url: '/search',
       type:'post',
       data: input
     }).done(function(response){
-      console.log(response)
       var context = {search_results: response.businesses};
       var html = $('#search_result_template').html();
       var templatingFunction = Handlebars.compile(html);
@@ -97,7 +96,7 @@ function handleSearchResults(results, status){
     //   this.infowindow.open(map,this);
     // });
 
-  };
+};
 }
 
 function performSearch(){
@@ -129,11 +128,26 @@ function initializeMap(location) {
 }
 
 
-function choiceListener(){
+function swipeListener(){
   $('.choice.btn').on('click', function(e){
     e.preventDefault()
+    var formData = $(this).parent().serialize()
     var clickedButton = $(this)
-    var user = $(this).parent().parent()
+    var user = $(this).parents(".col-md-6")
+
+
+    $.ajax({
+      url: "/swipe",
+      type: "POST",
+      data: formData,
+    }).done(function(response) {
+      console.log(response)
+
+    }).fail(function(){
+
+    });
+
+
     if(clickedButton.hasClass('no')){
       user.animate({left: '-200%'}, 500).fadeOut()
     }else{
@@ -146,11 +160,17 @@ function choiceListener(){
 
 
 
+
+
+
+
+
+
 $( document ).ready(function() {
   $(document).bind('scroll', fader);
   // loginListener()
   searchListener()
-  choiceListener()
+  swipeListener()
   // signUpListener()
   // initializeMap()
   // console.log(navigator.geolocation.getCurrentPosition(performSearch))

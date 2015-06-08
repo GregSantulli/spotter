@@ -92,8 +92,7 @@
         </div>
       </div>
     </div>
-        <% @all_users.shuffle.each do |user| %>
-        <% unless user.id == current_user.id %>
+        <% @unswiped_users.shuffle.each do |user| %>
     <div class="col-md-6">
         <div id="<%= user.id %>" class="member_container outline">
           <% if user.provider == "facebook" %>
@@ -112,18 +111,27 @@
             </div>
           </div>
 
-          <button class="no choice btn btn-danger">
+          <%= form_for :swipe do |f| %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :swipee_id, :value => user.id %>
+          <%= f.hidden_field :like, :value => false %>
+          <%= button_tag(type: 'submit', class: "no choice btn btn-danger") do %>
             <div class="glyphicon glyphicon-remove"></div>
-          </button>
-          <button class="yes choice btn btn-success">
-            <div class="glyphicon glyphicon-ok"></div>
-          </button>
+          <% end %>
+          <% end %>
 
+          <%= form_for :swipe do |f| %>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+          <%= f.hidden_field :swipee_id, :value => user.id %>
+          <%= f.hidden_field :like, :value => true %>
+          <%= button_tag(type: 'submit', class: "yes choice btn btn-success") do %>
+            <div class="glyphicon glyphicon-ok"></div>
+          <% end %>
+          <% end %>
 
 
         </div>
     </div>
-        <% end %>
         <% end %>
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608004808) do
+ActiveRecord::Schema.define(version: 20150608054107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,22 +24,23 @@ ActiveRecord::Schema.define(version: 20150608004808) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "likes", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "liker_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "likes", ["liker_id"], name: "index_likes_on_liker_id", using: :btree
-  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
-
   create_table "memberships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "gym_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "swipes", force: :cascade do |t|
+    t.integer  "swipee_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "like"
+  end
+
+  add_index "swipes", ["swipee_id"], name: "index_swipes_on_swipee_id", using: :btree
+  add_index "swipes", ["user_id"], name: "index_swipes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
 
   resources :users
 
+  post '/swipe' => 'swipes#create'
+
 
   # get 'add_gym/' => 'users#add_gym'
 
