@@ -3,7 +3,7 @@
 
 <script id="search_result_template" type="text/x-handlebars-template">
 {{#each search_results}}
-<a class="list-group-item" href="/users/<%= current_user.id %>/edit?gym[name]={{name}}&gym[address]={{location.address}}&gym[yelp_id]={{id}}">{{name}}</a>
+<a class="list-group-item" href="/users/<%= current_user.id %>/edit?gym[name]={{name}}&gym[address]={{location.address}}&gym[yelp_id]={{id}}"><strong>{{name}}</strong> - {{location.address}}, {{location.city}}, {{location.state_code}} {{location.postal_code}}</a>
 {{/each}}
 </script>
 
@@ -53,11 +53,11 @@
 
 <div class="search container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6 col-md-offset-3">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Search for gyms...">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Search</button>
+          <button id="gym-search" class="btn btn-default" type="button">Search</button>
         </span>
       </div>
     </div>
@@ -69,10 +69,13 @@
     <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">Gyms near you</h3>
+          <h3 id="search-results-header" class="panel-title">Gyms near you</h3>
         </div>
         <div class="near_you_results list-group">
-          <a href="#" class="list-group-item">Searching...</a>
+          <span class="list-group-item">Searching...
+            <%= image_tag 'loading.gif', size: "16"%>
+          </span>
+
         </div>
 
       </div>
@@ -172,3 +175,5 @@
     </div>
   </div>
 </div>
+
+
