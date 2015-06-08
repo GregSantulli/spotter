@@ -4,9 +4,10 @@ class SwipesController < ApplicationController
     swipee = User.find(swipe_params[:swipee_id])
     Swipe.create(swipe_params)
     if current_user.is_match?(swipee)
-      render json: swipee
+      render json: {match: swipee}
     else
       render json: {}
+    end
   end
 
   private

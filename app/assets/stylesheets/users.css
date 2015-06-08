@@ -138,5 +138,16 @@
 }
 
 .modal-body img {
-  border-radius: 50%
+  border-radius: 50%;
+  border:1px solid #e0e0e0;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 2em;
+}
+
+.modal-footer{
+  text-align: center;
+
 }
