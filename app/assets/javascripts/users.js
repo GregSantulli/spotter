@@ -143,9 +143,9 @@ function updateMatchModal(match){
   $('#modal_user_name').html(match.first_name)
   $('#modal_message_button').html("Message " + match.first_name)
   if(match.provider === 'facebook'){
-    $('#modal_image').attr('src', "http://graph.facebook.com/<%= match.uid %>/picture?type=large").attr('alt', "<%= match.first_name %>")
+    $('#modal_image').attr('src', "http://graph.facebook.com/" + match.uid + "/picture?type=large").attr('alt', "<%= match.first_name %>")
   }else{
-    $('#modal_image').attr('src', match.thumbnail_link).attr('alt', "<%= match.first_name %>")
+    $('#modal_image').attr('src', match.thumbnail_link).attr('alt', match.first_name)
   }
 }
 
