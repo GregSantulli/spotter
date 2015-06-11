@@ -101,9 +101,9 @@
     <div class="col-md-6">
       <div id="<%= user.id %>" class="member_container outline">
         <% if user.provider == "facebook" %>
-        <img src="http://graph.facebook.com/<%= user.uid %>/picture?type=large" alt="Profile Picture">
+        <img src="http://graph.facebook.com/<%= user.uid %>/picture?type=large" alt="<%= user.first_name %>">
         <% else %>
-        <img src="<%= user.thumbnail_link %>" alt="">
+        <img src="<%= user.thumbnail_link %>" alt="<%= user.first_name %>">
         <% end %>
         <h3><%= user.first_name %></h3>
 

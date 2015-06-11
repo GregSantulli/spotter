@@ -6,14 +6,14 @@ function fader() {
     "background-color", "rgba(51,71,122," +  (0.6 + (dt/500)) + ")")
 }
 
-
-
 function geoSearch(position) {
   var lat = position.coords.latitude
   var lon = position.coords.longitude
   var input = $('.search input').val()
   var data = {
-    coords: {latitude: lat, longitude: lon},
+    coords: {
+      latitude: lat,
+      longitude: lon,},
     term: input,
   }
   $.ajax({
@@ -40,7 +40,6 @@ function loginListener(){
   $('.login_button').on('click', function(){
     var menuType = $(this).attr('data-type')
     var clickedMenu = $('.' + menuType)
-
     if (clickedMenu.hasClass('active')){
       $('.' + menuType).fadeOut()
       $('.login').removeClass('active')
@@ -78,33 +77,22 @@ var map;
 var service;
 
 function handleSearchResults(results, status){
-
   console.log(results)
-
   for (var i = 0; i < results.length; i++) {
-
     // var marker = new google.maps.Marker({
     //   position: results[i].geometry.location,
     //   map: map,
     //   icon: 'assets/fitness_small.svg',
     //   infowindow: myinfowindow,
     // })
-
     // var myinfowindow = new google.maps.InfoWindow({
     //   content: "<div>"+ results[i].name + "</div>"
     // });
-
     // google.maps.event.addListener(marker, 'click', function() {
     //   this.infowindow.open(map,this);
     // });
   };
 }
-
-function performSearch(){
-  console.log(result)
-
-}
-
 
 function initializeMap(location) {
   var mapOptions = {
@@ -123,12 +111,10 @@ function initializeMap(location) {
 
 function swipeListener(){
   $('.choice.btn').on('click', function(e){
-    e.preventDefault()
-    var formData = $(this).parent().serialize()
-    var clickedButton = $(this)
-    var user = $(this).parents(".col-md-6")
-
-
+    e.preventDefault();
+    var formData = $(this).parent().serialize();
+    var clickedButton = $(this);
+    var user = $(this).parents(".col-md-6");
     $.ajax({
       url: "/swipe",
       type: "POST",
@@ -139,22 +125,17 @@ function swipeListener(){
         updateMatchModal(response.match);
         jQuery.noConflict();
         $('#myModal').modal('show');
-
       }else{
         console.log("no match")
       }
-
     }).fail(function(){
-
     });
-
-
     if(clickedButton.hasClass('no')){
       user.animate({left: '-200%'}, 500).fadeOut()
     }else{
       user.animate({right: '-200%'}, 500).fadeOut()
     }
-  })
+  });
 }
 
 
@@ -162,21 +143,13 @@ function updateMatchModal(match){
   $('#modal_user_name').html(match.first_name)
   $('#modal_message_button').html("Message " + match.first_name)
   if(match.provider === 'facebook'){
-    $('#modal_image').attr('src', "WOOP")
+    $('#modal_image').attr('src', "http://graph.facebook.com/<%= match.uid %>/picture?type=large").attr('alt', "<%= match.first_name %>")
   }else{
-    $('#modal_image').attr('src', match.thumbnail_link)
-  }
-
-}
-
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    console.log("No Geolocation");
+    $('#modal_image').attr('src', match.thumbnail_link).attr('alt', "<%= match.first_name %>")
   }
 }
+
+
 
 function geoSearchListener(){
   $('button#gym-search').on('click', function(){
